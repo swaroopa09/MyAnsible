@@ -1,0 +1,18 @@
+---
+- hosts: all 
+  become: yes
+  tasks: 
+  - name: in task01, install git (apt-get install git)
+    apt: 
+      name: git 
+      state: present 
+
+  - name: in task02, install tree(apt-get install tree)
+    apt:
+       name: tree 
+       state: present 
+
+  - name: in task03, install wget(apt-get install wget)
+    apt: 
+        name: wget 
+        state: present

@@ -1,0 +1,5 @@
+---
+  - name: create a file on node side
+    file: 
+      path: /home/rupa/myfirstfile
+      state: touch 
