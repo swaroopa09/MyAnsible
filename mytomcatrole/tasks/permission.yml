@@ -1,6 +1,8 @@
 ---
 - name: Change owner on tomcat folder
-  command: "sudo chown -R tomcat: /opt/tomcat"
+  command: "chown -R tomcat: /opt/tomcat"
 
 - name: Give execute permission on all .sh files in bin directory
-  command: "chmod +x /opt/tomcat/bin/*.sh"
+  shell: "chmod +x /opt/tomcat/bin/*.sh"
+  args:
+    executable: /bin/bash
