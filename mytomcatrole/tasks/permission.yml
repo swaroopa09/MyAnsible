@@ -1,0 +1,6 @@
+---
+- name: change owner on tomcat folder
+  command: "sudo chown -R tomcat: /otp/tomcat"
+
+- name: gives execute permission on bin files
+  command: "sudo sh -c 'chod +x /opt/tomcat/bin/* .sh'"  
