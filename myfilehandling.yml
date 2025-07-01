@@ -11,17 +11,20 @@
     apt:
       name: apache2
       state: present
+    notify: startwebserver
+
   - name: i want to copy a file into node side
     copy:
        src: mytestfile
        dest: /home/rupa/myfolder
+       force: yes
     notify: startwebserver
 
   - name: i want to download internet file 
     get_url:
-     url: https://updates.jenkins.io/download/war/2.509/jenkins.war
-     dest: /home/rupa/myfolder/jenkins.war
-     force_basic_auth: yes
+      url: https://updates.jenkins.io/download/war/2.509/jenkins.war
+      dest: /home/rupa/myfolder/jenkins.war
+      force_basic_auth: yes
     notify: startwebserver
 
   - name: how to copy index file into nodes 
