@@ -15,24 +15,19 @@
         name: apache2
         state: present
 
-    - name: Dummy task to always trigger handler
-      command: /bin/true
-      changed_when: true
-      notify: startwebserver
-
     - name: Copy a file into the node
       copy:
         src: mytestfile
         dest: /home/rupa/myfolder
-        force: yes
-      notify: startwebserver
+        force: yes   # Keep force, remove notify
+      # no notify
 
     - name: Download a file from the internet
       get_url:
         url: https://updates.jenkins.io/download/war/2.509/jenkins.war
         dest: /home/rupa/myfolder/jenkins.war
         force: true
-      notify: startwebserver
+      # no notify
 
     - name: Copy index file into node
       template:
