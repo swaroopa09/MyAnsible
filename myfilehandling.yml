@@ -15,6 +15,11 @@
         name: apache2
         state: present
 
+    - name: Dummy task to always trigger handler
+      command: /bin/true
+      changed_when: true
+      notify: startwebserver
+
     - name: Copy a file into the node
       copy:
         src: mytestfile
