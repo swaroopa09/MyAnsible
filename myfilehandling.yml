@@ -14,31 +14,35 @@
       apt:
         name: apache2
         state: present
-      
+
+    - name: Dummy task to always trigger handler
+      command: /bin/true
+      changed_when: true
+      notify: startwebserver
 
     - name: Copy a file into the node
       copy:
         src: mytestfile
         dest: /home/rupa/myfolder
-        force: yes   # 🔥 This makes Ansible always report changed
+        force: yes
       notify: startwebserver
 
     - name: Download a file from the internet
       get_url:
         url: https://updates.jenkins.io/download/war/2.509/jenkins.war
         dest: /home/rupa/myfolder/jenkins.war
-        force_basic_auth: yes   # 🔥 This also forces changed
+        force: true
       notify: startwebserver
 
     - name: Copy index file into node
       template:
         src: myindex.j2
         dest: /var/www/html/index.html
-        force: yes   # 🔥 Forces change even if the file is same
+        force: yes
       notify: startwebserver
 
   handlers:
     - name: startwebserver
       service:
         name: apache2
-        state: started
+        state: restarted
