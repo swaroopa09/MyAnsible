@@ -34,6 +34,7 @@
         src: myindex.j2
         dest: /var/www/html/index.html
         force: yes
+      changed_when: true  
       notify: startwebserver
 
   handlers:
