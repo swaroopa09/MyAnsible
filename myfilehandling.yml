@@ -1,0 +1,13 @@
+---
+- hosts: 172.31.10.225
+  become: yes
+  tasks:
+  - include_tasks: myfile.yml
+  - name: create a folder
+    file: 
+      path: /home/rupa/myfolder
+      state: directory
+  - name: i want to install apache2
+    apt:
+      name: apache2
+      state: present
