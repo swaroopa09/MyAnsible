@@ -1,0 +1,6 @@
+---
+- name: deploy java application on prod servers
+  get_url:
+    url: https://mybucket14may25.s3.us-east-2.amazonaws.com/login.war
+    dest: /opt/tomcat/webapps/login.war
+    force_basic_auth: yes
