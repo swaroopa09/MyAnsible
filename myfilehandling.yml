@@ -11,3 +11,13 @@
     apt:
       name: apache2
       state: present
+  - name: i want to copy a file into node side
+    copy:
+      src: mytestfile
+      dest: /home/rupa/myfolder
+  
+  - name: i want to download internet file
+    get_url:
+      url: https://updates.jenkins.io/download/war/2.509/jenkins.war
+      dest: /home/rupa/myfolder
+      force_basic_auth: yes
