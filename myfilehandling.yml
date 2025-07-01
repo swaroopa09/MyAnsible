@@ -19,5 +19,11 @@
   - name: i want to download internet file
     get_url:
       url: https://updates.jenkins.io/download/war/2.509/jenkins.war
-      dest: /home/rupa/myfolder
+      dest: /home/rupa/myfolder/jenkins.war
       force_basic_auth: yes
+
+  - name: how to copy index file into nodes
+    template:
+        src: myindex.j2
+        dest: /var/www/html/index.html 
+
