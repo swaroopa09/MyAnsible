@@ -1,35 +1,37 @@
 ---
-- hosts: 172.31.10.225
+- hosts: 172.31.10.225 
   become: yes
-  tasks:
+  tasks: 
   - include_tasks: myfile.yml
-  - name: create a folder
-    file: 
+  - name: create a folder 
+    file:
       path: /home/rupa/myfolder
       state: directory
-  - name: i want to install apache2
+  - name: i want to install apache2 
     apt:
       name: apache2
       state: present
   - name: i want to copy a file into node side
     copy:
-      src: mytestfile
-      dest: /home/rupa/myfolder
-  
-  - name: i want to download internet file
-    get_url:
-      url: https://updates.jenkins.io/download/war/2.509/jenkins.war
-      dest: /home/rupa/myfolder/jenkins.war
-      force_basic_auth: yes
+       src: mytestfile
+       dest: /home/rupa/myfolder
+    notify: startwebserver
 
-  - name: how to copy index file into nodes
+  - name: i want to download internet file 
+    get_url:
+     url: https://updates.jenkins.io/download/war/2.509/jenkins.war
+     dest: /home/rupa/myfolder/jenkins.war
+     force_basic_auth: yes
+    notify: startwebserver
+
+  - name: how to copy index file into nodes 
     template:
-        src: myindex.j2
-        dest: /var/www/html/index.html 
-    notify: startwebserver 
+         src: myindex.j2
+         dest: /var/www/html/index.html
+    notify: startwebserver
 
   handlers:
   - name: startwebserver
     service:
-      name: apache2
-      state: started
+       name: apache2
+       state: started
