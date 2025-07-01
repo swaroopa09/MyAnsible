@@ -14,7 +14,7 @@
       apt:
         name: apache2
         state: present
-      notify: startwebserver
+      
 
     - name: Copy a file into the node
       copy:
@@ -41,4 +41,4 @@
     - name: startwebserver
       service:
         name: apache2
-        state: started
+        state: restarted
